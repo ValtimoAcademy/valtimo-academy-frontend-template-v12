@@ -113,9 +113,7 @@ export const environment: ValtimoConfig = {
     },
   },
   featureToggles: {
-    disableFormFlow: false,
     showUserNameInTopBar: true,
-    caseSearchFields: true,
     experimentalDmnEditing: true,
     caseListColumn: true,
     largeLogoMargin: true,

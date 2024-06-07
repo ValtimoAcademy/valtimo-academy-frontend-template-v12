@@ -1,24 +1,24 @@
 {
   "/api/*": {
-    "target": "http://localhost:8080",
+    "target": "https://8080-valtimoacad-valtimoacad-11lw5sb7zp7.ws-eu114.gitpod.io",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
   },
   "/management/*": {
-    "target": "http://localhost:8080",
+    "target": "https://8080-valtimoacad-valtimoacad-11lw5sb7zp7.ws-eu114.gitpod.io",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
   },
   "/v3/*": {
-    "target": "http://localhost:8080",
+    "target": "https://8080-valtimoacad-valtimoacad-11lw5sb7zp7.ws-eu114.gitpod.io",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
   },
   "/mock-api/*": {
-    "target": "http://localhost:3000",
+    "target": "https://8080-valtimoacad-valtimoacad-11lw5sb7zp7.ws-eu114.gitpod.io",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,

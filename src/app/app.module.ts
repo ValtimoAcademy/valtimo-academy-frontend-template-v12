@@ -11,11 +11,10 @@ import {SecurityModule} from '@valtimo/security';
 import {
   BpmnJsDiagramModule,
   CardModule,
-  MenuModule, registerDocumentenApiFormioUploadComponent, registerFormioFileSelectorComponent,
+  MenuModule, registerFormioFileSelectorComponent,
   registerFormioUploadComponent,
   WidgetModule
 } from '@valtimo/components';
-import {ChoicefieldModule} from '@valtimo/choicefield';
 import {
   DefaultTabs,
   DossierDetailTabAuditComponent,
@@ -36,11 +35,9 @@ import {FormModule} from '@valtimo/form';
 import {SwaggerModule} from '@valtimo/swagger';
 import {AnalyseModule} from '@valtimo/analyse';
 import {ProcessManagementModule} from '@valtimo/process-management';
-import {DecisionModule} from '@valtimo/decision';
 import {MilestoneModule} from '@valtimo/milestone';
 import {LoggerModule} from 'ngx-logger';
 import {FormManagementModule} from '@valtimo/form-management';
-import {FormLinkModule} from '@valtimo/form-link';
 import {MigrationModule} from '@valtimo/migration';
 import {DossierManagementModule} from '@valtimo/dossier-management';
 import {BootstrapModule} from '@valtimo/bootstrap';
@@ -59,7 +56,6 @@ import {PLUGINS_TOKEN,
   objectTokenAuthenticationPluginSpecification
 } from '@valtimo/plugin';
 import {AccessControlManagementModule} from '@valtimo/access-control-management';
-import {DashboardManagementModule} from '@valtimo/dashboard-management';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -90,7 +86,6 @@ export function tabsFactory() {
     SecurityModule,
     MenuModule,
     TaskModule,
-    ChoicefieldModule,
     DossierModule.forRoot(tabsFactory),
     ProcessModule,
     BpmnJsDiagramModule,
@@ -106,10 +101,8 @@ export function tabsFactory() {
     SwaggerModule,
     FormFlowManagementModule,
     ProcessManagementModule,
-    DecisionModule,
     MilestoneModule,
     FormManagementModule,
-    FormLinkModule,
     MigrationModule,
     DossierManagementModule,
     PluginManagementModule,
@@ -119,7 +112,6 @@ export function tabsFactory() {
     ObjectModule,
     ObjectManagementModule,
     AccessControlManagementModule,
-    DashboardManagementModule,
     BigNumberModule,
     CaseCountDataSourceModule,
     AccessControlManagementModule,
@@ -146,6 +138,5 @@ export class AppModule {
   constructor(injector: Injector) {
     registerFormioUploadComponent(injector);
     registerFormioFileSelectorComponent(injector);
-    registerDocumentenApiFormioUploadComponent(injector);
   }
 }
