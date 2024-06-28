@@ -18,15 +18,18 @@ import {
 import {
   DefaultTabs,
   DossierDetailTabAuditComponent,
-  DossierDetailTabDocumentsComponent,
-  DossierDetailTabNotesComponent,
+  DossierDetailTabDocumentsComponent, DossierDetailTabNotesComponent,
   DossierDetailTabProgressComponent,
   DossierDetailTabSummaryComponent,
   DossierModule,
 } from '@valtimo/dossier';
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BigNumberModule, CaseCountDataSourceModule, DashboardModule} from '@valtimo/dashboard';
+import {
+  BigNumberModule,
+  CaseCountDataSourceModule,
+  DashboardModule,
+} from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
 import {ChoiceFieldModule} from '@valtimo/choice-field';
@@ -35,9 +38,11 @@ import {FormModule} from '@valtimo/form';
 import {SwaggerModule} from '@valtimo/swagger';
 import {AnalyseModule} from '@valtimo/analyse';
 import {ProcessManagementModule} from '@valtimo/process-management';
+import {DecisionModule} from '@valtimo/decision';
 import {MilestoneModule} from '@valtimo/milestone';
 import {LoggerModule} from 'ngx-logger';
 import {FormManagementModule} from '@valtimo/form-management';
+import {ProcessLinkModule} from '@valtimo/process-link';
 import {MigrationModule} from '@valtimo/migration';
 import {DossierManagementModule} from '@valtimo/dossier-management';
 import {BootstrapModule} from '@valtimo/bootstrap';
@@ -45,17 +50,43 @@ import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@val
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {FormFlowManagementModule} from '@valtimo/form-flow-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
-import {ObjectManagementModule} from '@valtimo/object-management';
-import {ObjectModule} from '@valtimo/object';
-import {PLUGINS_TOKEN,
+import {
+  BesluitenApiPluginModule,
+  besluitenApiPluginSpecification,
+  DocumentenApiPluginModule,
+  documentenApiPluginSpecification,
+  OpenZaakPluginModule,
+  openZaakPluginSpecification,
+  PLUGINS_TOKEN,
+  SmartDocumentsPluginModule,
+  smartDocumentsPluginSpecification,
+  ZakenApiPluginModule,
+  zakenApiPluginSpecification,
   ObjectenApiPluginModule,
   objectenApiPluginSpecification,
   ObjecttypenApiPluginModule,
   objecttypenApiPluginSpecification,
   ObjectTokenAuthenticationPluginModule,
-  objectTokenAuthenticationPluginSpecification
+  objectTokenAuthenticationPluginSpecification,
+  catalogiApiPluginSpecification,
+  CatalogiApiPluginModule,
+  notificatiesApiPluginSpecification,
+  openNotificatiesPluginSpecification,
+  NotificatiesApiPluginModule,
+  OpenNotificatiesPluginModule,
+  portaaltaakPluginSpecification,
+  PortaaltaakPluginModule, VerzoekPluginModule, verzoekPluginSpecification
 } from '@valtimo/plugin';
+import {ObjectManagementModule} from '@valtimo/object-management';
+import {ObjectModule} from '@valtimo/object';
 import {AccessControlManagementModule} from '@valtimo/access-control-management';
+import {DashboardManagementModule} from '@valtimo/dashboard-management';
+import {TaskManagementModule} from '@valtimo/task-management';
+import {CaseMigrationModule} from '@valtimo/case-migration';
+import {
+  registerDocumentenApiFormioUploadComponent,
+  ZgwModule
+} from '@valtimo/zgw';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -63,7 +94,7 @@ export function tabsFactory() {
     [DefaultTabs.progress, DossierDetailTabProgressComponent],
     [DefaultTabs.audit, DossierDetailTabAuditComponent],
     [DefaultTabs.documents, DossierDetailTabDocumentsComponent],
-    [DefaultTabs.notes, DossierDetailTabNotesComponent]
+    [DefaultTabs.notes, DossierDetailTabNotesComponent],
   ]);
 }
 
@@ -86,12 +117,14 @@ export function tabsFactory() {
     SecurityModule,
     MenuModule,
     TaskModule,
+    CaseMigrationModule,
     DossierModule.forRoot(tabsFactory),
     ProcessModule,
     BpmnJsDiagramModule,
     FormsModule,
     ReactiveFormsModule,
     DashboardModule,
+    DashboardManagementModule,
     DocumentModule,
     AccountModule,
     ChoiceFieldModule,
@@ -101,35 +134,59 @@ export function tabsFactory() {
     SwaggerModule,
     FormFlowManagementModule,
     ProcessManagementModule,
+    DecisionModule,
     MilestoneModule,
     FormManagementModule,
+    ProcessLinkModule,
     MigrationModule,
     DossierManagementModule,
     PluginManagementModule,
+    OpenZaakPluginModule,
+    SmartDocumentsPluginModule,
+    BesluitenApiPluginModule,
+    DocumentenApiPluginModule,
+    ZakenApiPluginModule,
     ObjectenApiPluginModule,
     ObjecttypenApiPluginModule,
     ObjectTokenAuthenticationPluginModule,
     ObjectModule,
     ObjectManagementModule,
-    AccessControlManagementModule,
+    CatalogiApiPluginModule,
+    NotificatiesApiPluginModule,
+    OpenNotificatiesPluginModule,
+    PortaaltaakPluginModule,
+    VerzoekPluginModule,
     BigNumberModule,
     CaseCountDataSourceModule,
     AccessControlManagementModule,
-    HttpClientModule, TranslateModule.forRoot({
+    HttpClientModule,
+    TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: MultiTranslateHttpLoaderFactory,
         deps: [HttpBackend, ConfigService]
-      }
+      },
     }),
-    TranslationManagementModule
+    TranslationManagementModule,
+    TaskManagementModule,
+    ZgwModule
   ],
   providers: [{
     provide: PLUGINS_TOKEN,
     useValue: [
+      openZaakPluginSpecification,
+      smartDocumentsPluginSpecification,
+      besluitenApiPluginSpecification,
+      documentenApiPluginSpecification,
+      zakenApiPluginSpecification,
       objectenApiPluginSpecification,
       objecttypenApiPluginSpecification,
-      objectTokenAuthenticationPluginSpecification
+      objectTokenAuthenticationPluginSpecification,
+      catalogiApiPluginSpecification,
+      notificatiesApiPluginSpecification,
+      openNotificatiesPluginSpecification,
+      portaaltaakPluginSpecification,
+      verzoekPluginSpecification
     ]
   }],
   bootstrap: [AppComponent]
@@ -138,5 +195,6 @@ export class AppModule {
   constructor(injector: Injector) {
     registerFormioUploadComponent(injector);
     registerFormioFileSelectorComponent(injector);
+    registerDocumentenApiFormioUploadComponent(injector);
   }
 }
