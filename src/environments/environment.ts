@@ -54,15 +54,15 @@ export const environment: ValtimoConfig = {
       }
     ]
   },
-  whitelistedDomains: ['localhost:4200'],
+  whitelistedDomains: [window['env']['whiteListedDomain']],
   mockApi: {
-    endpointUri: window['env']['swaggerUri'] || '/mock-api/'
+    endpointUri: window['env']['mockApiUri'] || '/mock-api/'
   },
   valtimoApi: {
-    endpointUri: window['env']['mockApiUri'] || '/api/'
+    endpointUri: window['env']['apiUri'] || '/api/'
   },
   swagger: {
-    endpointUri: window['env']['apiUri'] || '/v3/api-docs'
+    endpointUri: window['env']['swaggerUri'] || '/v3/api-docs'
   },
   logger: {
     level: NgxLoggerLevel.TRACE
