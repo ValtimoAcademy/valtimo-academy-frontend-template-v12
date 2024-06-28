@@ -45,7 +45,7 @@ testem.log
 Thumbs.db
 
 /.gradle
-
-# Config files
-conf/proxy.conf.json
-src/assets/config.js
+gradlew
+gradle.properties
+gradle
+gradlew.bat
