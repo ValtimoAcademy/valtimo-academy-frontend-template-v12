@@ -6,6 +6,6 @@
 
 image: gitpod/workspace-node-lts
 tasks:
-  - init: sudo apt install -y gettext
+  - init: sudo apt install -y gettext && gp timeout set 3h
   - init: npm install && npm run build
     command: npm run startGitpod
